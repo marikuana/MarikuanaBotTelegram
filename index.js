@@ -40,7 +40,7 @@ bot.onText(/\/test/, (msg, arr) => {
     if (data[0] == "weatherCity"){
         usersWeathers[msg.from.id] = {city: data[1]};
         bot.sendMessage(msg.message.chat.id, `Ви вибрали місто ${data[1]}`);
-        bot.editMessageText({chat_id: msg.message.chat.id, message_id: msg.message.id, text: "qq"});
+        bot.sendMessage(msg.message.chat.id, "qq");
 }
   });
 /*
