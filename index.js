@@ -35,7 +35,7 @@ bot.onText(/\/test/, (msg, arr) => {
 });
 
 
-  bot.on("callback_query",asyns msg => {
+  bot.on("callback_query",async msg => {
     const data = msg.data.split("_");
     if (data[0] == "weatherCity"){
         usersWeathers[msg.from.id] = {city: data[1]};
