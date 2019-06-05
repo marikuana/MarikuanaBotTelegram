@@ -35,6 +35,20 @@ bot.onText(/\/test/, (msg, arr) => {
 });
 
 
+bot.on("message", message => {
+
+    const chatid = message.chat.id;
+    if (message.text.endsWith("?")) {
+        if (message.text.length < 6) return;
+        let question = ["Дуже сумнівно", "Надіюсь, ні", "Надіюсь, так", "Так", "Ні",
+            "Неможливо передбачити зараз", "Без сумніву", "Можливо", "Ніколи", "Безумовно",
+            "Мої джерела кажуть - ні", "Через мій труп!", "Може бути", 
+            "Не розраховуйте на це", "Це точно"];
+        let rand = Math.floor(Math.random() * question.length);
+        bot.sendMessage(chatid, question[rand]);
+    }
+});
+
   bot.on("callback_query",async msg => {
     const data = msg.data.split("_");
     if (data[0] == "weatherCity"){
