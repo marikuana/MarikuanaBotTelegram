@@ -39,9 +39,10 @@ bot.onText(/\/test/, (msg, arr) => {
     const data = msg.data.split("_");
     if (data[0] == "weatherCity"){
         usersWeathers[msg.from.id] = {city: data[1]};
-        bot.sendMessage(msg.message.chat.id, `Ви вибрали місто ${data[1]}`);
-        //bot.editMessageText(msg.inline_message_id, "qq");
-}
+       bot.editMessageText(`${await weather.getIcon(data[1])}  *Погода* *${await weather.getTemp(data[1])}*°C`,
+        {chat_id: msg.message.chat.id, message_id: msg.message.message_id, parse_mode: "Markdown"})
+    
+    }
   });
 /*
 
