@@ -6,16 +6,6 @@ var weather = new Weather("af701a670830680176419dae464e4c84");
 const token = "856425587:AAFGgwx141n-ohvOS4hZ8VuVdYj_e0MEk2A";
 const bot = new Telegram(token, {polling: true});
 
-//st();
-
-async function st() {
-    await weather.updateWeather("Lviv");
-    await weather.updateWeather("Kiev");
-    weather.checkUpdate("Lviv");
-    setTimeout(()=>{weather.checkUpdate("Lviv")},1000);
-}
-//weather.updateWeather(702550);
-// weather.updateWeather(702550);
 
 var usersWeathers = {};
 
