@@ -1,9 +1,9 @@
 const Weather = require("./weather");//af701a670830680176419dae464e4c84  |Lviv  702550
 const Telegram = require("node-telegram-bot-api");
 
-var weather = new Weather("af701a670830680176419dae464e4c84");
+var weather = new Weather(process.env.WeatherToken);
 
-const token = "856425587:AAFGgwx141n-ohvOS4hZ8VuVdYj_e0MEk2A";
+const token = process.env.BotToken;
 const bot = new Telegram(token, {polling: true});
 
 
