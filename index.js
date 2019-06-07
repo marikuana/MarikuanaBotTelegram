@@ -11,7 +11,7 @@ var usersWeathers = {};
 
 bot.onText(/\/weather/, async (msg) => {
     if (!usersWeathers[msg.from.id]) {
-        bot.sendMessage(msg.chat.id, "Виберіть місто:", {reply_markup: {keyboard: [[{text: "Координати", request_location: true}]], one_time_keyboard: true, resize_keyboard: true}});
+        bot.sendMessage(msg.chat.id, "Мені потрібні ваші координати.\nНажміть на кнопку ⬇:", {reply_markup: {keyboard: [[{text: "Координати", request_location: true}]], one_time_keyboard: true, resize_keyboard: true}});
         return;
     }
     let weatherCoor = await weather.getWeatherwithCoor(usersWeathers[msg.from.id].latitude, usersWeathers[msg.from.id].longitude);
