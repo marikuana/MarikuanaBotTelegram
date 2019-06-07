@@ -68,3 +68,58 @@ const icons = {
     i01n: "🌙", i02n: "☁", i03n: "☁", i04n: "☁", i09n: "🌧", i10n: "🌧", i11n: "🌩", i13n: "❄", i50n: "🌫"}
 
 const cityList = [
+    {
+        "id": 702550,
+        "name": "Lviv",
+        "country": "uk",
+        "coord": {
+          "lon": 24.023239,
+          "lat": 49.838261
+        }
+      },
+      {
+        "id": 706448,
+        "name": "Kherson",
+        "country": "uk",
+        "coord": {
+          "lon": 32.617802,
+          "lat": 46.655811
+        }
+      },
+      {
+        "id": 703448,
+        "name": "Kiev",
+        "country": "uk",
+        "coord": {
+          "lon": 30.516666,
+          "lat": 50.433334
+        }
+      },
+      {
+        "id": 691650,
+        "name": "Ternopil",
+        "country": "uk",
+        "coord": {
+          "lon": 25.60556,
+          "lat": 49.555889
+        }
+      },
+      {
+        "id": 698740,
+        "name": "Odessa",
+        "country": "uk",
+        "coord": {
+          "lon": 30.732622,
+          "lat": 46.477474
+        }
+      },
+      {
+        "id": 707471,
+        "name": "Ivano-Frankivsk",
+        "country": "uk",
+        "coord": {
+          "lon": 24.709721,
+          "lat": 48.921501
+        }
+      },
+    ]
