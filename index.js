@@ -9,15 +9,13 @@ const bot = new Telegram(token, {polling: true});
 
 var usersWeathers = {};
 
-bot.onText(/\/weather/,async (msg) => {
-    if (!usersWeathers[msg.from.id]){
-        let cities = weather.getCityCountry("uk").map(c => [{text: c, callback_data: "weatherCity_"+c}]);
-        bot.sendMessage(msg.chat.id, "Виберіть місто:", {reply_markup: {inline_keyboard: cities }});
+bot.onText(/\/weather/, async (msg) => {
+    if (!usersWeathers[msg.from.id]) {
+        bot.sendMessage(msg.chat.id, "Виберіть місто:", {reply_markup: {keyboard: [[{text: "Координати", request_location: true}]], one_time_keyboard: true, resize_keyboard: true}});
         return;
     }
-    let userCity = usersWeathers[msg.from.id].city;
-    bot.sendMessage(msg.chat.id, `${await weather.getIcon(userCity)}  *Погода* *${await weather.getTemp(userCity)}*°C`, {parse_mode: "Markdown"});
-    //bot.sendMessage(msg.chat.id, icon)
+    let weatherCoor = await weather.getWeatherwithCoor(usersWeathers[msg.from.id].latitude, usersWeathers[msg.from.id].longitude);
+    bot.sendMessage(msg.chat.id, `${weather.getIconCoor(weatherCoor.weather[0].icon)}  *Погода* *${weatherCoor.main.temp}*°C`, { parse_mode: "Markdown" });
 });
 
 bot.onText(/\/test/, (msg, arr) => {
@@ -25,11 +23,18 @@ bot.onText(/\/test/, (msg, arr) => {
 });
 
 
-bot.on("message", message => {
-
-    const chatid = message.chat.id;
-    if (message.text.endsWith("?")) {
-        if (message.text.length < 6) return;
+bot.on("message",async msg => {
+    const chatid = msg.chat.id;
+    
+    if (msg.location){
+        usersWeathers[msg.from.id] = { latitude: msg.location.latitude, longitude: msg.location.longitude };
+        let weatherCoor = await weather.getWeatherwithCoor(usersWeathers[msg.from.id].latitude, usersWeathers[msg.from.id].longitude);
+        bot.sendMessage(msg.chat.id, `${weather.getIconCoor(weatherCoor.weather[0].icon)}  *Погода* *${weatherCoor.main.temp}*°C`, { parse_mode: "Markdown" });
+        return;
+    }
+    
+    if (msg.text.endsWith("?")) {
+        if (msg.text.length < 6) return;
         let question = ["Дуже сумнівно", "Надіюсь, ні", "Надіюсь, так", "Так", "Ні",
             "Неможливо передбачити зараз", "Без сумніву", "Можливо", "Ніколи", "Безумовно",
             "Мої джерела кажуть - ні", "Через мій труп!", "Може бути", 
