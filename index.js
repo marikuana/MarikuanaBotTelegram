@@ -44,6 +44,19 @@ bot.on("message",async msg => {
     }
 });
 
+bot.on("channel_post", async msg => {
+if (msg.text.endsWith("?")) {
+        if (msg.text.length < 6) return;
+        let question = ["Дуже сумнівно", "Надіюсь, ні", "Надіюсь, так", "Так", "Ні",
+            "Неможливо передбачити зараз", "Без сумніву", "Можливо", "Ніколи", "Безумовно",
+            "Мої джерела кажуть - ні", "Через мій труп!", "Може бути", 
+            "Не розраховуйте на це", "Це точно", "Зуб даю", "Всьо быть может но быть может только то не может быть щто быть может быть неможить остальное может быть"];
+        let rand = Math.floor(Math.random() * question.length);
+        bot.sendMessage(chatid, question[rand]);
+    }
+
+});
+
   bot.on("callback_query",async msg => {
     const data = msg.data.split("_");
     if (data[0] == "weatherCity"){
