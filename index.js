@@ -45,6 +45,7 @@ bot.on("message",async msg => {
 });
 
 bot.on("channel_post", async msg => {
+    const chatid = msg.chat.id;
 if (msg.text.endsWith("?")) {
         if (msg.text.length < 6) return;
         let question = ["Дуже сумнівно", "Надіюсь, ні", "Надіюсь, так", "Так", "Ні",
